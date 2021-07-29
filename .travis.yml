@@ -1,0 +1,12 @@
+language: python
+python:
+  - '3.4'
+install:
+  - python3 -m pip install -r requirements.txt
+  - python3 -m pip install .
+script:
+  - make
+  - python3 tests/testDNWithBinary.py
+  - python3 tests/testGuid.py
+  - python3 tests/testKeyCredentials.py
+  - python3 tests/testRSAKeyMaterial.py
