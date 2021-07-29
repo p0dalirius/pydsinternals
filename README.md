@@ -13,7 +13,7 @@ Python implementation of MichaelGrafnetter's [DS Internals](https://github.com/M
 ## Installation
 
 ```
-pip3 install pydsinternals
+python3 -m pip install dsinternals
 ```
 
 ## References
