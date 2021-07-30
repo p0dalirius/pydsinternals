@@ -8,13 +8,17 @@
 ![PyPI](https://img.shields.io/pypi/v/dsinternals)
 [![Build Status](https://travis-ci.com/p0dalirius/pydsinternals.svg?branch=main)](https://travis-ci.com/p0dalirius/pydsinternals)
 
-Python implementation of MichaelGrafnetter's [DS Internals](https://github.com/MichaelGrafnetter/DSInternals) library.
+Python implementation of [MichaelGrafnetter](https://twitter.com/MGrafnetter)'s [DS Internals](https://github.com/MichaelGrafnetter/DSInternals) library.
 
 ## Installation
 
 ```
 python3 -m pip install dsinternals
 ```
+
+## Contributing
+
+Pull requests are welcome. Feel free to open an issue if you want to add other features.
 
 ## References
  - https://github.com/MichaelGrafnetter/DSInternals
