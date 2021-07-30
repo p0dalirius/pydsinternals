@@ -1,3 +1,2 @@
 pyopenssl
-datetime
 pycryptodomex
