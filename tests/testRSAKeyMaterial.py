@@ -80,11 +80,4 @@ class TestCaseGuid(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    t = TestCaseGuid()
-    t.test_key01()
-    t.test_key02()
-    t.test_key03()
-    t.test_key04()
-    t.test_key05()
-    t.test_key06()
-    t.test_key07()
+    unittest.main()
