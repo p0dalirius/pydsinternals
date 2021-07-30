@@ -149,23 +149,4 @@ class TestCaseGuid(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    t = TestCaseGuid()
-    t.test_load_guid_from_format_N()
-    t.test_load_guid_from_format_D()
-    t.test_load_guid_from_format_P()
-    t.test_load_guid_from_format_B()
-    t.test_load_guid_from_format_X()
-
-    t.test_export_guid_to_format_N()
-    t.test_export_guid_to_format_D()
-    t.test_export_guid_to_format_P()
-    t.test_export_guid_to_format_B()
-    t.test_export_guid_to_format_X()
-
-    t.test_import_export_involution_format_N()
-    t.test_import_export_involution_format_D()
-    t.test_import_export_involution_format_P()
-    t.test_import_export_involution_format_B()
-    t.test_import_export_involution_format_X()
-
-    t.test_random_guid_range_of_values()
+    unittest.main()

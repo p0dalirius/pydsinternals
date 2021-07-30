@@ -31,6 +31,4 @@ class TestCaseKeyCredential(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    t = TestCaseKeyCredential()
-    t.test_key01()
-    t.test_key02()
+    unittest.main()

@@ -6,7 +6,4 @@ install:
   - python3 -m pip install .
 script:
   - make
-  - python3 tests/testDNWithBinary.py
-  - python3 tests/testGuid.py
-  - python3 tests/testKeyCredentials.py
-  - python3 tests/testRSAKeyMaterial.py
+  - python3 -m unittest discover

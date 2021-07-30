@@ -33,8 +33,4 @@ class TestCaseDNWithBinary(unittest.TestCase):
         self.assertRaises(InvalidBinaryDataLength, DNWithBinary.fromRawDNWithBinary, data)
 
 if __name__ == '__main__':
-    t = TestCaseDNWithBinary()
-    t.test_parse_good_data()
-    t.test_error_parse_empty_data()
-    t.test_error_parse_not_4_parts_of_data()
-    t.test_error_parse_invalid_data_length()
+    unittest.main()
