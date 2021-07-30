@@ -15,7 +15,7 @@ class X509Certificate2(object):
     class X509Certificate2
     """
 
-    def __init__(self, subject, keySize=2048, daysBefore=10, daysAfter=365):
+    def __init__(self, subject, keySize=2048, notBefore=0, notAfter=365):
         self.key = None
 
         # create rsa key pair object
@@ -29,8 +29,8 @@ class X509Certificate2(object):
         self.certificate.get_subject().CN = subject
         self.certificate.set_issuer(self.certificate.get_subject())
         # Validity
-        self.certificate.gmtime_adj_notBefore(daysBefore * 24 * 60 * 60)
-        self.certificate.gmtime_adj_notAfter(daysAfter * 24 * 60 * 60)
+        self.certificate.gmtime_adj_notBefore(notBefore * 24 * 60 * 60)
+        self.certificate.gmtime_adj_notAfter(notAfter * 24 * 60 * 60)
 
         self.certificate.set_pubkey(self.key)
 
