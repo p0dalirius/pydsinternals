@@ -11,7 +11,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='dsinternals',
-    version='1.2.1',
+    version='1.2.2',
     description='',
     url='http://github.com/p0dalirius/pydsinternals',
     author='Podalirius',
