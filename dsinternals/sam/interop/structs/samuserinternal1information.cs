@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace DSInternals.SAM.Interop
 {
-    // See http://msdn.microsoft.com/en-us/library/cc245612.aspx
+    // See https://msdn.microsoft.com/en-us/library/cc245612.aspx
     [StructLayout(LayoutKind.Sequential)]
     internal struct SamUserInternal1Information
     {

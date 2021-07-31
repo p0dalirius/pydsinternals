@@ -4,7 +4,7 @@
     using System.Security;
     using System.Security.Cryptography;
 
-    // See http://msdn.microsoft.com/en-us/library/system.security.cryptography.hashalgorithm%28v=vs.110%29.aspx
+    // See https://msdn.microsoft.com/en-us/library/system.security.cryptography.hashalgorithm%28v=vs.110%29.aspx
     public static class NTHash
     {
         /// <summary>

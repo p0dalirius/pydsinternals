@@ -31,7 +31,7 @@
         /// STATUS_SUCCESS - The Service completed successfully.
         /// STATUS_ACCESS_DENIED - Access was denied.
         /// </returns>
-        /// <see>http://msdn.microsoft.com/en-us/library/cc245753.aspx</see>
+        /// <see>https://msdn.microsoft.com/en-us/library/cc245753.aspx</see>
         [DllImport(SamLib, SetLastError = true, CharSet = CharSet.Unicode)]
         private static extern NtStatus SamConnect([In] ref UnicodeString serverName, out SafeSamHandle serverHandle, SamServerAccessMask accessMask, IntPtr objectAttributes);
         internal static NtStatus SamConnect(string serverName, out SafeSamHandle serverHandle, SamServerAccessMask accessMask)
@@ -87,7 +87,7 @@
         /// STATUS_ACCESS_DENIED - Caller does not have the appropriate access to complete the operation.
         /// STATUS_INVALID_SERVER_STATE - Indicates the SAM server is currently disabled.
         /// </returns>
-        /// <see>http://msdn.microsoft.com/en-us/library/cc245748.aspx</see>
+        /// <see>https://msdn.microsoft.com/en-us/library/cc245748.aspx</see>
         [DllImport(SamLib, SetLastError = true)]
         private static extern NtStatus SamOpenDomain(SafeSamHandle serverHandle, SamDomainAccessMask desiredAccess, [MarshalAs(UnmanagedType.LPArray)] byte[] domainId, out SafeSamHandle domainHandle);
         internal static NtStatus SamOpenDomain(SafeSamHandle serverHandle, SamDomainAccessMask desiredAccess, SecurityIdentifier domainSid, out SafeSamHandle domainHandle)
@@ -131,7 +131,7 @@
         /// STATUS_NO_SUCH_USER - The specified user does not exist.
         /// STATUS_INVALID_HANDLE - The domain handle passed is invalid. 
         /// </returns>
-        /// <see>http://msdn.microsoft.com/en-us/library/cc245752.aspx</see>
+        /// <see>https://msdn.microsoft.com/en-us/library/cc245752.aspx</see>
         [DllImport(SamLib, SetLastError = true)]
         internal static extern NtStatus SamOpenUser(SafeSamHandle domainHandle, SamUserAccessMask desiredAccess, int userId, out SafeSamHandle userHandle);
 
@@ -149,7 +149,7 @@
         /// STATUS_INVALID_DOMAIN_STATE - The domain server is not in the correct state (disabled or enabled) to perform the requested operation. The domain server must be enabled for this operation.
         /// STATUS_INVALID_DOMAIN_ROLE - The domain server is serving the incorrect role (primary or backup) to perform the requested operation. 
         /// </returns>
-        /// <see>http://msdn.microsoft.com/en-us/library/cc245793.aspx</see>
+        /// <see>https://msdn.microsoft.com/en-us/library/cc245793.aspx</see>
         [DllImport(SamLib, SetLastError = true)]
         private static extern NtStatus SamSetInformationUser(SafeSamHandle userHandle, SamUserInformationClass userInformationClass, [In] ref SamUserInternal1Information buffer);
 
@@ -200,7 +200,7 @@
         /// STATUS_SOME_NOT_MAPPED - Some of the names provided could not be mapped. This is a successful return.
         /// STATUS_NONE_MAPPED - No names could be mapped. This is an error return.
         /// </returns>
-        /// <see>http://msdn.microsoft.com/en-us/library/cc245712.aspx</see>
+        /// <see>https://msdn.microsoft.com/en-us/library/cc245712.aspx</see>
         [DllImport(SamLib, SetLastError = true)]
         private static extern NtStatus SamLookupNamesInDomain(SafeSamHandle domainHandle, int count, UnicodeString[] names, out SafeSamPointer relativeIds, out SafeSamPointer use);
 
@@ -275,7 +275,7 @@
         /// STATUS_SUCCESS - The object was successfully closed.
         /// STATUS_INVALID_HANDLE - The handle passed is invalid.
         /// </returns>
-        /// <see>http://msdn.microsoft.com/en-us/library/cc245722.aspx</see>
+        /// <see>https://msdn.microsoft.com/en-us/library/cc245722.aspx</see>
         [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
         [DllImport(SamLib, SetLastError = true)]
         internal static extern NtStatus SamCloseHandle([In] IntPtr samHandle);

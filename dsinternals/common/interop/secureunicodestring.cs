@@ -6,7 +6,7 @@ namespace DSInternals.Common.Interop
     /// <summary>
     /// The UnicodeString structure is used to define Unicode strings.
     /// </summary>
-    /// <see>http://msdn.microsoft.com/library/windows/hardware/ff564879.aspx</see>
+    /// <see>https://msdn.microsoft.com/library/windows/hardware/ff564879.aspx</see>
     [StructLayout(LayoutKind.Sequential)]
     public struct SecureUnicodeString
     {

@@ -5,7 +5,7 @@ namespace DSInternals.Common.Interop
     /// <summary>
     /// The NETRESOURCE structure contains information about a network resource.
     /// </summary>
-    /// <see>http://msdn.microsoft.com/library/windows/desktop/aa385353.aspx</see>
+    /// <see>https://msdn.microsoft.com/library/windows/desktop/aa385353.aspx</see>
     [StructLayout(LayoutKind.Sequential,CharSet=CharSet.Unicode)]
     internal struct NetResource
     {

@@ -249,7 +249,7 @@ namespace DSInternals.Common.Interop
         /// <param name="userName">This specifies the username used to make the connection. If NULL, the default username (currently logged on user) will be applied.  This is used when the user wishes to connect to a resource, but has a different user name or account assigned to him for that resource.</param>
         /// <param name="flags">A set of connection options.</param>
         /// <returns>If the function succeeds, the return value is NO_ERROR.</returns>
-        /// <see>http://msdn.microsoft.com/library/windows/desktop/aa385413.aspx</see>
+        /// <see>https://msdn.microsoft.com/library/windows/desktop/aa385413.aspx</see>
         [DllImport(Mpr, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern Win32ErrorCode WNetAddConnection2([In] ref NetResource netResource, [In] SafeUnicodeSecureStringPointer password, [In][MarshalAs(UnmanagedType.LPWStr)] string userName, NetConnectOptions flags);
 
@@ -268,7 +268,7 @@ namespace DSInternals.Common.Interop
         /// <param name="flags">Connection type.</param>
         /// <param name="force">Specifies whether the disconnection should occur if there are open files or jobs on the connection. If this parameter is FALSE, the function fails if there are open files or jobs.</param>
         /// <returns>If the function succeeds, the return value is NO_ERROR.</returns>
-        /// <see>http://msdn.microsoft.com/library/windows/desktop/aa385427.aspx</see>
+        /// <see>https://msdn.microsoft.com/library/windows/desktop/aa385427.aspx</see>
         [DllImport(Mpr, CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern Win32ErrorCode WNetCancelConnection2([MarshalAs(UnmanagedType.LPWStr)] string name, NetCancelOptions flags, [MarshalAs(UnmanagedType.Bool)] bool force);
 

@@ -50,7 +50,7 @@ namespace Microsoft.Isam.Esent.Interop
         /// </summary>
         static JET_UNICODEINDEX()
         {
-            // Some common LCIDs are listed at http://msdn.microsoft.com/en-us/goglobal/bb964664.aspx.
+            // Some common LCIDs are listed at https://msdn.microsoft.com/en-us/goglobal/bb964664.aspx.
             LcidToLocales.Add(127, string.Empty);
             LcidToLocales.Add(1033, "en-us");
             LcidToLocales.Add(1046, "pt-br");
