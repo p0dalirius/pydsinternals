@@ -4,8 +4,8 @@
 # Author             : Podalirius (@podalirius_)
 # Date created       : 28 Jul 2021
 
-
 from enum import Enum
+
 
 class KeyUsage(Enum):
     """
