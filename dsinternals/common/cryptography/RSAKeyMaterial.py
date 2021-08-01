@@ -88,6 +88,28 @@ class RSAKeyMaterial(object):
             data += b_prime2
         return data
 
+    def toDict(self):
+        keyMaterialDict = {
+            "modulus": self.modulus,
+            "exponent": self.exponent,
+            "prime1": self.prime1,
+            "prime2": self.prime2,
+            "keySize": self.keySize
+        }
+        return keyMaterialDict
+
+
+    @classmethod
+    def fromDict(cls, data):
+        modulus = data["modulus"]
+        exponent = data["exponent"]
+        keySize = data["keySize"]
+        prime1 = data["prime1"]
+        prime2 = data["prime2"]
+        keyMaterial = cls(modulus, exponent, keySize, prime1, prime2)
+        return keyMaterial
+
+
     def show(self):
         print("<RsaKeyMaterial at 0x%x>" % id(self))
         print(" | Exponent (E): %s" % hex(self.exponent))

@@ -132,7 +132,10 @@ class KeyCredential(object):
     def __init__(self, publicKey: RSAKeyMaterial, deviceId: Guid, owner: str, currentTime=None, isComputerKey: bool = False):
         # Process owner DN/UPN
         assert (len(owner) != 0)
-        self.Owner = owner
+        if type(owner) == str:
+            self.Owner = owner
+        elif type(owner) == bytes:
+            self.Owner = owner.decode("UTF-8")
 
         # Initialize the Key Credential based on requirements stated in MS-KPP Processing Details:
         self.Version = KeyCredentialVersion.Version2
@@ -338,8 +341,41 @@ class KeyCredential(object):
         self.toByteArray()
         return bool(self.computed_hash == self.KeyHash)
 
+    def toDict(self) -> dict:
+        keyCredentialDict = {
+            'Owner': self.Owner,
+            'Version': self.Version.value,
+            'Identifier': self.Identifier,
+            'KeyHash': binascii.hexlify(self.KeyHash).decode('UTF-8'),
+            'CreationTime': self.CreationTime.toTicks(),
+            'RawKeyMaterial': self.RawKeyMaterial.toDict(),
+            'Usage': self.Usage.value,
+            'LegacyUsage': self.LegacyUsage,
+            'Source': self.Source.value,
+            'DeviceId': self.DeviceId.toFormatD(),
+            'LastLogonTime': self.LastLogonTime.toTicks(),
+            #todo : toTicks doesn't seem to work
+            'CustomKeyInfo': self.CustomKeyInfo.toDict()
+        }
+        return keyCredentialDict
+
+    @classmethod
+    def fromDict(cls, data):
+        KeyMaterial = RSAKeyMaterial.fromDict(data["RawKeyMaterial"])
+        keyCredential = cls(publicKey=KeyMaterial, deviceId=Guid.fromFormatD(data["DeviceId"]), owner=data["Owner"], currentTime=DateTime(data["CreationTime"]))
+        keyCredential.Version = KeyCredentialVersion(data["Version"])
+        keyCredential.Identifier = data["Identifier"]
+        keyCredential.KeyHash = binascii.unhexlify(data["KeyHash"])
+        keyCredential.Usage = KeyUsage(data["Usage"])
+        keyCredential.LegacyUsage = data["LegacyUsage"]
+        keyCredential.Source = KeySource(data["Source"])
+        keyCredential.CustomKeyInfo = CustomKeyInformation.fromDict(data["CustomKeyInfo"])
+        keyCredential.LastLogonTime = DateTime(data["LastLogonTime"])
+        return keyCredential
+
     def show(self):
         print("<KeyCredential structure at %s>" % hex(id(self)))
+        print("  | \x1b[93mOwner\x1b[0m:", self.Owner)
         print("  | \x1b[93mVersion\x1b[0m:", hex(self.Version.value))
         print("  | \x1b[93mKeyID\x1b[0m:", self.Identifier)
         """
@@ -362,8 +398,8 @@ class KeyCredential(object):
         print("  | \x1b[93mCustomKeyInfo\x1b[0m:", self.CustomKeyInfo)
         for key in self.CustomKeyInfo.keys():
             print("  |  | \x1b[93m%s\x1b[0m:" % key, self.CustomKeyInfo[key])
-        print("  | \x1b[93mLastLogonTime\x1b[0m:", self.LastLogonTime)
-        print("  | \x1b[93mCreationTime\x1b[0m:", self.CreationTime)
+        print("  | \x1b[93mLastLogonTime (UTC)\x1b[0m:", self.LastLogonTime)
+        print("  | \x1b[93mCreationTime (UTC)\x1b[0m:", self.CreationTime)
 
     def __bytes__(self):
         return self.toByteArray()

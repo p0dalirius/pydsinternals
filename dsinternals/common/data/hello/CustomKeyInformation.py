@@ -48,6 +48,8 @@ class CustomKeyInformation(dict):
         super(CustomKeyInformation, self).__init__()
         self.Version = self.CurrentVersion
         self.Flags = flags
+        self["Version"] = self.Version
+        self["Flags"] = self.Flags
 
     @classmethod
     def fromBlob(self, blob: bytes, version):
@@ -125,6 +127,40 @@ class CustomKeyInformation(dict):
             self.EncodedExtendedCKI = None
         self["EncodedExtendedCKI"] = self.EncodedExtendedCKI
         return self
+
+
+    def toDict(self):
+        CustomKeyInformationDict = {
+            'Version': self.Version,
+            'Flags': self.Flags.value,
+            'VolumeType': self.VolumeType,
+            'SupportsNotification': self.SupportsNotification,
+            'FekKeyVersion': self.FekKeyVersion,
+            'Strength': self.Strength,
+            'Reserved': self.Reserved,
+            'EncodedExtendedCKI': self.EncodedExtendedCKI
+        }
+        return CustomKeyInformationDict
+
+    @classmethod
+    def fromDict(cls, data):
+        cki = cls(flags=KeyFlags(data["Flags"]))
+        cki.Version = data["Version"]
+        cki.VolumeType = CustomKeyInformationVolumeType(data["VolumeType"]) if data["VolumeType"] is not None else None
+        cki.SupportsNotification = data["SupportsNotification"]
+        cki.Strength = data["Strength"]
+        cki.FekKeyVersion = data["FekKeyVersion"]
+        cki.Reserved = data["Reserved"]
+        cki.EncodedExtendedCKI = data["EncodedExtendedCKI"]
+        cki["Version"] = cki.Version
+        cki["VolumeType"] = cki.VolumeType
+        cki["SupportsNotification"] = cki.SupportsNotification
+        cki["FekKeyVersion"] = cki.FekKeyVersion
+        cki["Strength"] = cki.Strength
+        cki["Reserved"] = cki.Reserved
+        cki["EncodedExtendedCKI"] = cki.EncodedExtendedCKI
+        return cki
+
 
     def toByteArray(self) -> bytes:
         stream_data = b""
