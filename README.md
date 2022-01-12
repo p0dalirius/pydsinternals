@@ -3,10 +3,13 @@
 
 # pydsinternals - Directory Services Internals Library
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dsinternals)
-![PyPI](https://img.shields.io/pypi/v/dsinternals)
-[![Build Status](https://travis-ci.com/p0dalirius/pydsinternals.svg?branch=main)](https://travis-ci.com/p0dalirius/pydsinternals)
+<p align="center">
+  <img alt="MIT License" src="https://img.shields.io/badge/License-MIT-green.svg">
+  <img alt="Build Status" src="https://travis-ci.com/p0dalirius/pydsinternals.svg?branch=main">
+  <img alt="PyPI" src="https://img.shields.io/pypi/v/dsinternals">
+  <a href="https://twitter.com/intent/follow?screen_name=podalirius_" title="Follow"><img src="https://img.shields.io/twitter/follow/podalirius_?label=Podalirius&style=social"></a>
+  <br>
+</p>
 
 A Python native library containing necessary classes, functions and structures to interact with Windows Active Directory.
 
