@@ -6,7 +6,10 @@
 import os
 
 import OpenSSL
-from Cryptodome.PublicKey import RSA
+try:
+    from Cryptodome.PublicKey import RSA
+except ImportError:
+    from Crypto.PublicKey import RSA
 from dsinternals.common.cryptography.RSAKeyMaterial import RSAKeyMaterial
 
 
