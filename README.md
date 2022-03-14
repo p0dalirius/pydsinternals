@@ -4,7 +4,6 @@
 # pydsinternals - Directory Services Internals Library
 
 <p align="center">
-  <img src="https://badges.pufler.dev/visits/p0dalirius/pydsinternals/"/>
   <img alt="MIT License" src="https://img.shields.io/badge/License-MIT-green.svg">
   <img alt="Build Status" src="https://travis-ci.com/p0dalirius/pydsinternals.svg?branch=main">
   <img alt="PyPI" src="https://img.shields.io/pypi/v/dsinternals">
