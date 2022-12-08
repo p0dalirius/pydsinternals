@@ -230,7 +230,10 @@ class KeyCredential(object):
                 _KeyApproximateLastLogonTimeStamp = ConvertFromBinaryTime(entry["data"], _KeySource, _Version)
 
             elif entry["entryType"] == KeyCredentialEntryType.KeyCreationTime.value:
-                _KeyCreationTime = ConvertFromBinaryTime(entry["data"], _KeySource, _Version)
+                try:
+                    _KeyCreationTime = ConvertFromBinaryTime(entry["data"], _KeySource, _Version)
+                except OverflowError:
+                    pass
 
             read_data = stream_data.read(3)
 
