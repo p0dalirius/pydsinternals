@@ -5,6 +5,7 @@
 # Date created       : 31 Jul 2021
 
 from enum import Enum
+from dsinternals.microsoft.isam.esent.interop.grbits import *
 
 
 class MatchCriteria(Enum):

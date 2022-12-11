@@ -5,7 +5,7 @@
 # Date created       : 31 Jul 2021
 
 from enum import Enum
-from dsinternals.microsoft.isam.esent.interop.grbits import ColumndefGrbit, Server2003Grbits, SeekGrbit
+from dsinternals.microsoft.isam.esent.interop.grbits import *
 
 
 class ColumnFlags(Enum):
