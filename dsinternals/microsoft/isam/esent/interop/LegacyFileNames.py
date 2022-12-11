@@ -7,7 +7,7 @@
 from enum import Enum
 
 
-class LegacyFileNames(ENum):
+class LegacyFileNames(Enum):
     """
     LegacyFileNames
     

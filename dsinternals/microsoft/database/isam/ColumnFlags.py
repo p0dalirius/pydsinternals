@@ -5,6 +5,7 @@
 # Date created       : 31 Jul 2021
 
 from enum import Enum
+from dsinternals.microsoft.isam.esent.interop.grbits import ColumndefGrbit, Server2003Grbits, SeekGrbit
 
 
 class ColumnFlags(Enum):
@@ -58,8 +59,7 @@ class ColumnFlags(Enum):
     # called the itagSequence member.
     # Multi-valued columns must be tagged columns; that is, they cannot be fixed-length or
     # variable-length columns.
-    # All multi-
-    # valued columns are also sparse columns.
+    # All multi-valued columns are also sparse columns.
     MultiValued = ColumndefGrbit.ColumnMultiValued
 
     #  Specifies that a column is an escrow update column. An escrow update column can be
