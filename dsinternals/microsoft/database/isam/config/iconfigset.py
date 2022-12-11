@@ -22,40 +22,6 @@ class MergeRules(Enum):
     # Keep existing values of the destination config set intact while performing the merge.
     KeepExisting = 2
 
-"""
-# Interface definition for a config set.
-public interface IConfigSet : IEnumerable<KeyValuePair<int, object>>
-{
-    # <summary>
-    # Gets a particular config parameter's value.
-    # </summary>
-    # <param name="key">The parameter to get.</param>
-    # <returns>The requested parameter's value.</returns>
-    object this[int key] { get; }
-
-    # <summary>
-    # Gets a particular config parameter's value.
-    # </summary>
-    # <param name="key">The parameter to get.</param>
-    # <param name="value">The requested parameter's value.</param>
-    # <returns>true if the value was found, false otherwise.</returns>
-    bool TryGetValue(int key, out object value);
-
-    # <summary>
-    # Merges two config sets into one and throws an exception if there are any conflicts.
-    # </summary>
-    # <param name="source">The MergeSource config set to user.</param>
-    void Merge(IConfigSet source);
-
-    # <summary>
-    # Merges two config sets into one.
-    # </summary>
-    # <param name="source">The MergeSource config set to user.</param>
-    # <param name="mergeRule">The merge rule to use.</param>
-    void Merge(IConfigSet source, MergeRules mergeRule);
-}
-"""
-
 
 class ConfigSetMergeException(Exception):
     """
@@ -65,12 +31,12 @@ class ConfigSetMergeException(Exception):
     """
 
     # Gets the MergeSource config set used during the merge operation.
-    MergeSource:IConfigSet = None
+    MergeSource = None
 
     # Gets the destination config set used during the merge operation.
-    MergeDest: IConfigSet = None
+    MergeDest = None
 
-    def __init__(self, mergeSource:IConfigSet, mergeDest:IConfigSet, message:str):
+    def __init__(self, mergeSource, mergeDest, message:str):
         """
         Initializes a new instance of the ConfigSetMergeException class.
 
