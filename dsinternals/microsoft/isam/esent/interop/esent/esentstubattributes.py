@@ -16,7 +16,11 @@ class SecurityAction(Enum):
 
     LinkDemand = 0
 
-
+    
+class Attribute(object):
+    pass
+    
+    
 class SecurityPermissionAttribute(Attribute):
     """
     SecurityPermissionAttribute
@@ -146,7 +150,7 @@ class Consistency(Enum):
     WillNotCorruptState = 3
 
 
-class Cer(ENum):
+class Cer(Enum):
     """
     Cer
 
