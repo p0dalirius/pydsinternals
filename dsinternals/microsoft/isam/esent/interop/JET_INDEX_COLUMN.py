@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # File name          : jet_index_column.py
 # Author             : Podalirius (@podalirius_)
@@ -63,7 +63,7 @@ class JET_INDEX_COLUMN(object):
     """
 
     # Gets or sets the column identifier for the column to retrieve.
-    columnid: JET_COLUMNID = None
+    columnid = None
 
     # Gets or sets the filter comparison operation.
     relop: JetRelop = None
@@ -72,7 +72,7 @@ class JET_INDEX_COLUMN(object):
     pvData: bytes = b""
 
     # Gets or sets the option for this column comparison.
-    grbit: JetIndexColumnGrbit
+    grbit = None
 
     def toString(self) -> str:
         """
@@ -80,7 +80,7 @@ class JET_INDEX_COLUMN(object):
 
         A <see cref="T:System.String"/> that represents the current <see cref="JET_INDEX_COLUMN"/>.
         """
-        return string.Format(CultureInfo.InvariantCulture, "JET_INDEX_COLUMN(0x{0:x})", self.columnid)
+        return "JET_INDEX_COLUMN(0x{0:x})".format(self.columnid)
 
     def GetNativeIndexColumn(self, handles):
         """
