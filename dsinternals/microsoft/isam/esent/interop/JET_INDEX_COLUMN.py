@@ -43,15 +43,15 @@ class JetRelop(Enum):
 # The native version of the <see cref="JET_INDEX_COLUMN"/> structure.
 NATIVE_INDEX_COLUMN = {
     # The column identifier for the column to check.
-    columnid: "",
+    "columnid": "",
     # The comparison operation.
-    relop: "",
+    "relop": "",
     # A pointer to a value to compare.
-    pvData: "",
+    "pvData": "",
     # The size of value beginning at pvData, in bytes.
-    cbData: "",
+    "cbData": "",
     # Options regarding this column value.
-    grbit: ""
+    "grbit": ""
 }
 
 
