@@ -128,7 +128,7 @@ class NonSerializedAttribute(Attribute):
     """
 
     def toString(self):
-        return base.toString()
+        return ""
 
 
 class Consistency(Enum):
