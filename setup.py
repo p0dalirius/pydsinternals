@@ -18,7 +18,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     author_email='podalirius@protonmail.com',
-    packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
+    packages=setuptools.find_packages(exclude=["tests*", "tests.*"]),
     license='GPL2',
     classifiers=[
         "Programming Language :: Python :: 3",
