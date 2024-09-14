@@ -11,7 +11,8 @@ try:
 except ImportError:
     from Crypto.PublicKey import RSA
 from dsinternals.common.cryptography.RSAKeyMaterial import RSAKeyMaterial
-
+from cryptography.hazmat.primitives.serialization import pkcs12, PrivateFormat
+from cryptography.hazmat.primitives import hashes
 
 class X509Certificate2(object):
     """
@@ -54,11 +55,15 @@ class X509Certificate2(object):
         if len(os.path.dirname(path_to_file)) != 0:
             if not os.path.exists(os.path.dirname(path_to_file)):
                 os.makedirs(os.path.dirname(path_to_file), exist_ok=True)
-        pk = OpenSSL.crypto.PKCS12()
-        pk.set_privatekey(self.key)
-        pk.set_certificate(self.certificate)
+        encryption = (
+             PrivateFormat.PKCS12.encryption_builder().
+             kdf_rounds(50000).
+             key_cert_algorithm(pkcs12.PBES.PBESv1SHA1And3KeyTripleDESCBC).
+             hmac_hash(hashes.SHA256()).build(password.encode())
+        )
+        p12 = pkcs12.serialize_key_and_certificates(b"", self.key.to_cryptography_key(), self.certificate.to_cryptography(), None, encryption)        
         with open(path_to_file + ".pfx", "wb") as f:
-            f.write(pk.export(passphrase=password))
+            f.write(p12)
 
     def ExportPEM(self, path_to_files):
         if len(os.path.dirname(path_to_files)) != 0:
