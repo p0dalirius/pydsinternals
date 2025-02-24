@@ -1,17 +1,25 @@
 .PHONY : all clean build upload
 
-BASEDIR=./pydsinternals
-
-all: install
+all: install clean
 
 clean:
 	@rm -rf `find ./ -type d -name "*__pycache__"`
-	@rm -rf ./build/ ./dist/ ./dsinternals.egg-info/
+	@rm -rf ./build/ ./dist/ ./pydsinternals.egg-info/
 
-install:
-	python3 setup.py install
+docs:
+	@python3 -m pip install pdoc --break-system-packages
+	@echo "[$(shell date)] Generating docs ..."
+	@PDOC_ALLOW_EXEC=1 python3 -m pdoc -d markdown -o ./documentation/ ./pydsinternals/
+	@echo "[$(shell date)] Done!"
+
+install: build
+	pip install . --break-system-packages
+
 build:
-	python3 setup.py sdist bdist_wheel
+	python3 -m pip uninstall pydsinternals --yes --break-system-packages
+	python3 -m pip install .[build] --break-system-packages
+	python3 -m build --wheel
 
-upload:
-	python3 setup.py sdist upload
+upload: build
+	python3 -m pip install .[twine] --break-system-packages
+	python3 -m twine upload dist/*
