@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # File name          : KeyCredential.py
 # Author             : Podalirius (@podalirius_)
@@ -122,11 +122,7 @@ class KeyCredential(object):
     def fromX509Certificate2(cls, certificate: X509Certificate2, deviceId: Guid, owner: str, currentTime: DateTime = None, isComputerKey=False):
         assert (certificate is not None)
 
-        # Computer NGC keys are DER-encoded, while user NGC keys are encoded as BCRYPT_RSAKEY_BLOB.
-        if isComputerKey:
-            publicKey = certificate.ExportRSAPublicKeyDER()
-        else:
-            publicKey = certificate.ExportRSAPublicKeyBCrypt()
+        publicKey = certificate.ExportRSAPublicKeyBCrypt()
         return cls(publicKey, deviceId, owner, currentTime, isComputerKey)
 
     def __init__(self, publicKey: RSAKeyMaterial, deviceId: Guid, owner: str, currentTime=None, isComputerKey: bool = False):
@@ -156,10 +152,14 @@ class KeyCredential(object):
         self.Source = KeySource.AD
         self.DeviceId = deviceId
         self.computed_hash = "\x00"*16
-        # Computer NGC keys have to meet some requirements to pass the validated write
-        # The CustomKeyInformation entry is not present.
-        # The KeyApproximateLastLogonTimeStamp entry is not present.
-        if not isComputerKey:
+        # Computer NGC keys have to meet some requirements to pass the validated write.
+        # https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/f70afbcc-780e-4d91-850c-cfadce5bb15c
+        # The KeyApproximateLastLogonTimeStamp entry must not be present.
+        # Although the spec says that the CustomKeyInformation entry must not be present,
+        # in practice it seems that Windows adds it with KeyFlags.MFANotUsed.
+        if isComputerKey:
+            self.CustomKeyInfo = CustomKeyInformation(KeyFlags.MFANotUsed)
+        else:
             self.LastLogonTime = self.CreationTime
             self.CustomKeyInfo = CustomKeyInformation(KeyFlags.NONE)
 
