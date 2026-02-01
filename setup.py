@@ -11,19 +11,22 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='dsinternals',
-    version='1.2.4',
-    description='',
+    version='1.2.5',
+    description='Directory Services Internals Library',
     url='http://github.com/p0dalirius/pydsinternals',
     author='Podalirius',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author_email='podalirius@protonmail.com',
     packages=setuptools.find_packages(exclude=["tests*", "tests.*"]),
-    license='GPL2',
+    license_expression='MIT',
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.4',
+    install_requires=[
+        'pyopenssl',
+        'pycryptodomex',
+    ],
 )
