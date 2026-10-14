@@ -28,5 +28,6 @@ setuptools.setup(
     install_requires=[
         'pyopenssl',
         'pycryptodomex',
+        'cryptography',
     ],
 )
